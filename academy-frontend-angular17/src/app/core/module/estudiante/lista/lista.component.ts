@@ -28,7 +28,7 @@ export class ListaComponent implements OnInit {
 		});
 	}
 
-	navigateToCreateStudentRoute() {
+	navigateToCreate() {
 		const otherRoute = '/admin/estudiante/crear';
 		this.router.navigate([otherRoute]);
 	}

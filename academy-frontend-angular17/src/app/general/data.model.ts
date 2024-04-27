@@ -20,3 +20,14 @@ export interface Student {
     created_at?: string;
     updated_at?: string;
 }
+
+export interface Course {
+    id?: number;
+    name: string;
+    schedule: string;
+    start_date: number;
+    end_date: string;
+    type: string;
+    created_at?: string;
+    updated_at?: string;
+}

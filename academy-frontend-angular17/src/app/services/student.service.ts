@@ -12,13 +12,13 @@ export class StudentService {
   private apiUrl = `${API_ROOT}/students/`; 
 
   constructor(private http: HttpClient) { }
-
-  createUser(user: any): Observable<ResponseRegister> {
-    return this.http.post<ResponseRegister>(this.apiUrl, user);
-  }
   
   getUsers(): Observable<ResponseList> {
     return this.http.get<ResponseList>(this.apiUrl);
+  }
+
+  createUser(user: any): Observable<ResponseRegister> {
+    return this.http.post<ResponseRegister>(this.apiUrl, user);
   }
   
   getUserById(userId: number): Observable<any> {

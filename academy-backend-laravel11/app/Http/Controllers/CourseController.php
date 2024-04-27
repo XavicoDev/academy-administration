@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class CourseController extends Controller
 {
@@ -12,8 +13,15 @@ class CourseController extends Controller
      */
     public function index()
     {
+        // $courses = Course::all();
+        // return view('courses.index', compact('courses'));
+
         $courses = Course::all();
-        return view('courses.index', compact('courses'));
+        $data = [
+            'data' => $courses,
+            'status' => 200
+        ];
+        return response()->json($data, 200);
     }
 
     public function create()
@@ -23,7 +31,8 @@ class CourseController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+
+        $validator = Validator::make($request->all(), [
             'name' => 'required|max:50',
             'schedule' => 'required',
             'start_date' => 'required|date',
@@ -31,8 +40,37 @@ class CourseController extends Controller
             'type' => 'required|in:Presencial,Virtual',
         ]);
 
-        Course::create($request->all());
-        return redirect()->route('courses.index')->with('success', 'Curso creado exitosamente');
+        if ($validator->fails()) {
+            $data = [
+                'message' => 'Error en la validación de los datos',
+                'errors' => $validator->errors(),
+                'status' => 400
+            ];
+            return response()->json($data, 400);
+        }
+
+        $student = Course::create([
+            'name' => $request->name,
+            'schedule' => $request->schedule,
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date,
+            'type' => $request->type
+        ]);
+
+        if (!$student) {
+            $data = [
+                'message' => 'Error al crear el estudiante',
+                'status' => 500
+            ];
+            return response()->json($data, 500);
+        }
+
+        $data = [
+            'data' => $student,
+            'status' => 201
+        ];
+
+        return response()->json($data, 201);
     }
 
     public function show($id)

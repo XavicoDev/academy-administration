@@ -10,7 +10,7 @@ const routes: Routes = [
   },
   { 
     path: 'crear', component: NuevoComponent,
-  },
+  }
 ];
 
 @NgModule({

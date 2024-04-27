@@ -1,1 +1,42 @@
-<p>nuevo Curso!</p>
+<div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6 p-2">
+        <div>
+          <h2 class="text-center">Ingrese datos del curso</h2>
+        </div>
+        <form [formGroup]="courseForm" (ngSubmit)="submitForm()">
+          <div class="form-group">
+            <label for="Nombre">Nombre:</label>
+            <input type="text" class="form-control" formControlName="name" id="Nombre" name="Nombre"
+              placeholder="Ingrese el nombre del curso">
+          </div>
+          <div class="form-group">
+            <label for="Horario">Horario:</label>
+            <input type="text" class="form-control" id="Horario" formControlName="schedule" name="Horario"
+              placeholder="Ingrese el horario del curso">
+          </div>
+          <div class="form-group">
+            <label for="FechaInicio">Fecha de inicio:</label>
+            <input type="date" class="form-control" id="FechaInicio" formControlName="start_date" name="FechaInicio">
+          </div>
+          <div class="form-group">
+            <label for="FechaFin">Fecha de fin:</label>
+            <input type="date" class="form-control" id="FechaFin" formControlName="end_date" name="FechaFin">
+          </div>
+          <div class="form-group">
+            <label for="Tipo">Tipo:</label>
+            <select class="form-control" id="Tipo" formControlName="type" name="Tipo">
+              <option value="Presencial">Presencial</option>
+              <option value="Virtual">Virtual</option>
+            </select>
+          </div>
+          <div class="form-group p-2">
+            <button type="button" class="btn btn-secondary mx-2" (click)="navigateToListCourseRoute()">Cancelar</button>
+            <button type="button" class="btn btn-secondary mx-2" (click)="generateRandomValues()">Generar valores aleatorios</button>
+            <button type="submit" class="btn btn-primary">Registrar curso</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
