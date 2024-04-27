@@ -6,13 +6,13 @@ use Illuminate\Http\Request;
 use App\Models\Student;
 use Illuminate\Support\Facades\Validator;
 
-class studentController extends Controller
+class StudentController extends Controller
 {
     public function index()
     {
         $students = Student::all();
         $data = [
-            'students' => $students,
+            'data' => $students,
             'status' => 200
         ];
         return response()->json($data, 200);
@@ -75,7 +75,7 @@ class studentController extends Controller
         }
 
         $data = [
-            'student' => $student,
+            'data' => $student,
             'status' => 201
         ];
 
