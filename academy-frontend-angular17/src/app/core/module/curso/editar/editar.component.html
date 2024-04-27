@@ -2,7 +2,7 @@
     <div class="row justify-content-center">
       <div class="col-md-6 p-2">
         <div>
-          <h2 class="text-center">Ingrese datos del curso</h2>
+          <h2 class="text-center">Ingrese los nuevos datos del curso</h2>
         </div>
         <form [formGroup]="courseForm" (ngSubmit)="submitForm()">
           <div class="form-group">
@@ -31,9 +31,8 @@
             </select>
           </div>
           <div class="form-group p-2">
-            <button type="button" class="btn btn-secondary mx-2"  (click)="change('list')">Cancelar</button>
-            <button type="button" class="btn btn-secondary mx-2" (click)="generateRandomValues()">Generar valores aleatorios</button>
-            <button type="submit" class="btn btn-primary mx-2">Registrar curso</button>
+            <button type="button" class="btn btn-secondary mx-2" (click)="change('list')">Cancelar</button>    
+            <button type="submit" class="btn btn-primary">Actualizar curso</button>
           </div>
         </form>
       </div>

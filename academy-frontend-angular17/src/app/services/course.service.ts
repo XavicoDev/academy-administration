@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CourseService {
 
-  private apiUrl = `${API_ROOT}/courses/`; 
+  private apiUrl = `${API_ROOT}/courses`; 
 
   constructor(private http: HttpClient) { }
   
@@ -17,8 +17,18 @@ export class CourseService {
     return this.http.get<ResponseList>(this.apiUrl);
   }
 
-  createCourse(user: any): Observable<ResponseRegister> {
-    return this.http.post<ResponseRegister>(this.apiUrl, user);
+  createCourse(course: any): Observable<ResponseRegister> {
+    return this.http.post<ResponseRegister>(this.apiUrl, course);
+  }
+  
+  updateCourse(courseId: number, courseData: any): Observable<any> {
+    const url = `${this.apiUrl}/${courseId}`;
+    return this.http.put<any>(url, courseData);
+  }
+  
+  deleteCourse(courseId: number): Observable<any> {
+    const url = `${this.apiUrl}/${courseId}`;
+    return this.http.delete<any>(url);
   }
 
 }

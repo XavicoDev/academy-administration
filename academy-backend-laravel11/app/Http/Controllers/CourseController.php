@@ -87,23 +87,68 @@ class CourseController extends Controller
 
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'name' => 'required|max:50',
+        $course = Course::find($id);
+
+        if (!$course) {
+            $data = [
+                'message' => 'Curso no encontrado',
+                'status' => 404
+            ];
+            return response()->json($data, 404);
+        }
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
             'schedule' => 'required',
-            'start_date' => 'required|date',
-            'end_date' => 'required|date',
-            'type' => 'required|in:Presencial,Virtual',
+            'start_date' => 'required',
+            'end_date' => 'required',
+            'type' => 'required|in:Presencial,Virtual'
         ]);
 
-        $course = Course::findOrFail($id);
-        $course->update($request->all());
-        return redirect()->route('courses.index')->with('success', 'Curso actualizado exitosamente');
+        if ($validator->fails()) {
+            $data = [
+                'message' => 'Error en la validación de los datos',
+                'errors' => $validator->errors(),
+                'status' => 400
+            ];
+            return response()->json($data, 400);
+        }
+
+        $course->name = $request->name;
+        $course->schedule = $request->schedule;
+        $course->start_date = $request->start_date;
+        $course->end_date = $request->end_date;
+        $course->type = $request->type;
+
+        $course->save();
+
+        $data = [
+            'message' => 'Curso actualizado',
+            'student' => $course,
+            'status' => 200
+        ];
+
+        return response()->json($data, 200);
+
     }
 
     public function destroy($id)
     {
-        $course = Course::findOrFail($id);
+        $course = Course::find($id);
+        if (!$course) {
+            $data = [
+                'message' => 'Curso no encontrado',
+                'status' => 404
+            ];
+            return response()->json($data, 404);
+        }
         $course->delete();
-        return redirect()->route('courses.index')->with('success', 'Curso eliminado exitosamente');
+        $data = [
+            'message' => 'Estudiante eliminado',
+            'status' => 200
+        ];
+        return response()->json($data, 200);
     }
+
+
 }

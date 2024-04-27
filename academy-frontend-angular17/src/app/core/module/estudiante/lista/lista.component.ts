@@ -19,7 +19,7 @@ import Swal from 'sweetalert2';
 export class ListaComponent implements OnInit {
 
 	students: Student[] = [];
-	studentSelect!: Student
+	studentSelect!: Student;
 	view: string = '';
 
 	constructor(
@@ -44,8 +44,6 @@ export class ListaComponent implements OnInit {
 
 	deleteStudent(student: Student) {
 		if (student.id) {
-
-
 			Swal.fire({
 				title: '¿Estás seguro?',
 				text: '¿Quieres eliminar al estudiante ' + student.first_name + ' ' + student.last_name + '?',

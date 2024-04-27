@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, output } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { CourseService } from '../../../../services/course.service';
 import { Course } from '../../../../general/data.model';
 import Swal from 'sweetalert2';
@@ -16,10 +15,10 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
   providers:[CourseService]
 })
 export class NuevoComponent implements OnInit {
+  onNameChange = output<string>();
   courseForm!: FormGroup;
 
   constructor(
-    private router: Router,
     private fb: FormBuilder,
     private courseService: CourseService
   ) { }
@@ -44,7 +43,7 @@ export class NuevoComponent implements OnInit {
             text: '¡Curso registrado con éxito!',
             icon: 'success'
           }).then((result) => {
-            this.navigateToListCourseRoute();
+            this.change('reload');
           });
         } else {
           Swal.fire({
@@ -74,9 +73,8 @@ export class NuevoComponent implements OnInit {
     });
   }
 
-  navigateToListCourseRoute() {
-    const otherRoute = '/admin/curso/lista';
-    this.router.navigate([otherRoute]);
+  change(action: string) {
+    this.onNameChange.emit(action);
   }
 
 }
