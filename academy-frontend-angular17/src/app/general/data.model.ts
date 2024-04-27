@@ -16,7 +16,7 @@ export interface Student {
     last_name: string;
     age: number;
     ci: string;
-    mail: string;
+    email: string;
     created_at?: string;
     updated_at?: string;
 }

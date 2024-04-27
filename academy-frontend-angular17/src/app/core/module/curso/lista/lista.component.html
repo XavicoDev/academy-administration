@@ -1,4 +1,4 @@
-<br>
+ <br>
 <button class="btn btn-primary mb-3" (click)="navigateToCreate()">Registrar nuevo curso</button>
 
 <br>
@@ -12,6 +12,7 @@
 			<th scope="col">Tipo</th>
 			<th scope="col">Creado</th>
 			<th scope="col">Editado</th>
+			<th scope="col" colspan="2">Acción</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -24,7 +25,9 @@
 				<td>{{ course.type }}</td>
 				<td>{{ course.created_at }}</td>
 				<td>{{ course.updated_at }}</td>
+				<td><button class="btn btn-primary mb-3" (click)="navigateToCreate()">Editar</button></td>
+				<td><button class="btn btn-primary mb-3" (click)="navigateToCreate()">Eliminar</button></td>
 			</tr>
 		}
 	</tbody>
-</table>
+</table> 

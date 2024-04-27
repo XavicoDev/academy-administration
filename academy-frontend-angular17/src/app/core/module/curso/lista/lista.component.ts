@@ -7,28 +7,29 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-lista',
   standalone: true,
-	imports: [HttpClientModule],
+  imports: [HttpClientModule],
   templateUrl: './lista.component.html',
   styleUrl: './lista.component.css',
-  providers:[CourseService]
+  providers: [CourseService]
 })
-export class ListaComponent implements OnInit{
+
+export class ListaComponent implements OnInit {
 
   courses: Course[] = [];
 
   constructor(
     private courseService: CourseService,
-		private router: Router
-  ){}
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.courseService.getCourses().subscribe(data => {
-			this.courses=data.data;
-		});
+      this.courses = data.data;
+    });
   }
 
-	navigateToCreate() {
-		const otherRoute = '/admin/curso/crear';
-		this.router.navigate([otherRoute]);
-	}
+  navigateToCreate() {
+    const otherRoute = '/admin/curso/crear';
+    this.router.navigate([otherRoute]);
+  }
 }

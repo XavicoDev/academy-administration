@@ -3,22 +3,34 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Administrator extends Model
+class Administrator extends Authenticatable
 {
+    use HasApiTokens;
     use HasFactory;
+
+    protected $table = 'administrators';
+
+
     protected $fillable = [
         'first_name',
         'last_name',
-        'mail',
+        'email', 
         'password',
+    ];
+
+    protected $hidden = [
+        'password',
+        'remember_token',
     ];
 
     public static $rules = [
         'first_name' => 'required|string|max:100',
         'last_name' => 'required|string|max:100',
-        'mail' => 'required|email|unique:administradores,email',
+        'email' => 'required|email|unique:administrators,email',
         'password' => 'required|string|min:8|confirmed|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/',
     ];
 }
+

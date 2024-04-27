@@ -9,7 +9,7 @@ import { ResponseList, ResponseRegister } from '../general/data.model';
 })
 export class StudentService {
 
-  private apiUrl = `${API_ROOT}/students/`; 
+  private apiUrl = `${API_ROOT}/students`; 
 
   constructor(private http: HttpClient) { }
   

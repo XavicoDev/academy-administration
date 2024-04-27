@@ -37,7 +37,7 @@ class StudentController extends Controller
 
         return response()->json($data, 200);
     }
-    
+
     public function store(Request $request)
     {
 
@@ -46,7 +46,7 @@ class StudentController extends Controller
             'last_name' => 'required',
             'age' => 'required',
             'ci' => 'required',
-            'mail' => 'required|email|unique:student'
+            'email' => 'required|email|unique:student'
         ]);
 
         if ($validator->fails()) {
@@ -63,7 +63,7 @@ class StudentController extends Controller
             'last_name' => $request->last_name,
             'age' => $request->age,
             'ci' => $request->ci,
-            'mail' => $request->mail
+            'email' => $request->email
         ]);
 
         if (!$student) {
@@ -94,7 +94,7 @@ class StudentController extends Controller
             ];
             return response()->json($data, 404);
         }
-        
+
         $student->delete();
 
         $data = [
@@ -122,7 +122,7 @@ class StudentController extends Controller
             'last_name' => 'required',
             'age' => 'required',
             'ci' => 'required',
-            'mail' => 'required|email|unique:student'
+            // 'email' => 'required|email|unique:student'
         ]);
 
         if ($validator->fails()) {
@@ -138,7 +138,7 @@ class StudentController extends Controller
         $student->last_name = $request->last_name;
         $student->age = $request->age;
         $student->ci = $request->ci;
-        $student->mail = $request->mail;
+        // $student->email = $request->email;
 
         $student->save();
 
@@ -165,7 +165,7 @@ class StudentController extends Controller
         }
 
         $validator = Validator::make($request->all(), [
-            'mail' => 'email|unique:student'
+            'email' => 'email|unique:student'
         ]);
 
         if ($validator->fails()) {
@@ -193,8 +193,8 @@ class StudentController extends Controller
             $student->ci = $request->ci;
         }
 
-        if ($request->has('mail')) {
-            $student->ci = $request->mail;
+        if ($request->has('email')) {
+            $student->ci = $request->email;
         }
 
         $student->save();
