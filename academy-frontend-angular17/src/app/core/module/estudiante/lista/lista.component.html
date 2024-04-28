@@ -20,7 +20,7 @@
 			<th scope="col">ID</th>
 			<th scope="col">Creado</th>
 			<th scope="col">Editado</th>
-			<th scope="col" colspan="2">Acción</th>
+			<th scope="col" colspan="3">Acción</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -33,8 +33,9 @@
 			<td>{{ student.ci }}</td>
 			<td>{{ student.created_at }}</td>
 			<td>{{ student.updated_at }}</td>
-			<td><button class="btn btn-primary mb-3" (click)="navigateToEdit(student)">Editar</button></td>
-			<td><button class="btn btn-primary mb-3" (click)="deleteStudent(student)">Eliminar</button></td>
+			<td><button class="btn btn-secondary mb-3" (click)="navigateToEdit(student)">Editar</button></td>
+			<td><button class="btn btn-success mb-3" (click)="navigateToEdit(student)">Matriculas</button></td>
+			<td><button class="btn btn-danger mb-3" (click)="deleteStudent(student)">Eliminar</button></td>
 		</tr>
 		}
 	</tbody>

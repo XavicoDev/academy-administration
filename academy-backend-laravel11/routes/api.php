@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\AdminLoginController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\StudentCourseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,4 +27,7 @@ Route::put('/courses/{id}', [CourseController::class, 'update']);
 Route::patch('/courses/{id}', [CourseController::class, 'updatePartial']);
 Route::delete('/courses/{id}', [CourseController::class, 'destroy']);
 
+Route::get('students/{studentId}/courses', [StudentCourseController::class, 'getCoursesForStudent']);
+Route::post('students/{studentId}/courses/{courseId}', [StudentCourseController::class, 'enrollStudentInCourse']);
+Route::delete('students/{studentId}/courses/{courseId}', [StudentCourseController::class, 'removeStudentFromCourse']);
 
