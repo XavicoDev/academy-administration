@@ -9,6 +9,7 @@ import { EstudianteModule } from './module/estudiante/estudiante.module';
 import { EstadisticComponent } from './component/estadistic/estadistic.component';
 import { StatisticsService } from '../services/statistics.service';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthService } from '../services/auth.service';
 
 
 
@@ -25,6 +26,6 @@ import { HttpClientModule } from '@angular/common/http';
     CursoModule,
     EstudianteModule,
   ],
-  providers:[StatisticsService]
+  providers:[StatisticsService, AuthService]
 })
 export class CoreModule { }
