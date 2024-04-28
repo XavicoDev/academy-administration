@@ -1,1 +1,30 @@
-<p>Aqui van las estadisticas</p>
+<div class="dashboard-container">
+    <div class="row">
+      <div class="statistic-box">
+        <h2>Total Cursos</h2>
+        <p>{{ totalCourses }}</p>
+      </div>
+  
+      <div class="statistic-box">
+        <h2>Total Estudiantes</h2>
+        <p>{{ totalStudents }}</p>
+      </div>
+    </div>
+  
+    <div class="row">
+      <div class="statistic-box">
+        <h2>Top Cursos</h2>
+        <ul>
+          <li *ngFor="let course of topCourses">{{ course.name }}</li>
+        </ul>
+      </div>
+  
+      <div class="statistic-box">
+        <h2>Top Estudiantes</h2>
+        <ul>
+          <li *ngFor="let student of topStudents">{{ student.first_name+' '+student.last_name }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  

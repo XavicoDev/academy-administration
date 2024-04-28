@@ -7,6 +7,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { CursoModule } from './module/curso/curso.module';
 import { EstudianteModule } from './module/estudiante/estudiante.module';
 import { EstadisticComponent } from './component/estadistic/estadistic.component';
+import { StatisticsService } from '../services/statistics.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -19,9 +21,10 @@ import { EstadisticComponent } from './component/estadistic/estadistic.component
     CoreRoutingModule,
     SharedModule,
     RouterOutlet,
+    HttpClientModule,
     CursoModule,
     EstudianteModule,
-
-  ]
+  ],
+  providers:[StatisticsService]
 })
 export class CoreModule { }

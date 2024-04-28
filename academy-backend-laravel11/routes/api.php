@@ -30,4 +30,9 @@ Route::delete('/courses/{id}', [CourseController::class, 'destroy']);
 Route::get('students/{studentId}/courses', [StudentCourseController::class, 'getCoursesForStudent']);
 Route::post('students/{studentId}/courses/{courseId}', [StudentCourseController::class, 'enrollStudentInCourse']);
 Route::delete('students/{studentId}/courses/{courseId}', [StudentCourseController::class, 'removeStudentFromCourse']);
+//statistics
+Route::get('statistics/top-courses', [StudentCourseController::class, 'topCoursesWithMostStudents']);
+Route::get('statistics/top-students', [StudentCourseController::class, 'topStudentsWithMostCourses']);
+Route::get('statistics/total-courses', [StudentCourseController::class, 'totalCourses']);
+Route::get('statistics/total-students', [StudentCourseController::class, 'totalStudents']);
 
