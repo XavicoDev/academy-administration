@@ -16,6 +16,11 @@ export class StudentService {
   getUsers(): Observable<ResponseList> {
     return this.http.get<ResponseList>(this.apiUrl);
   }
+  
+  getCoursesOfStudent(userId: number): Observable<ResponseList> {
+    const url = `${this.apiUrl}/${userId}/courses`;
+    return this.http.get<ResponseList>(url);
+  }
 
   createUser(user: any): Observable<ResponseRegister> {
     return this.http.post<ResponseRegister>(this.apiUrl, user);
@@ -33,6 +38,16 @@ export class StudentService {
   
   deleteUser(userId: number): Observable<any> {
     const url = `${this.apiUrl}/${userId}`;
+    return this.http.delete<any>(url);
+  }
+  
+  enrollStudentInCourse(courseId: number,studentId: number): Observable<any> {
+    const url = `${this.apiUrl}/courses/enroll`;
+    return this.http.post<any>(url,{studentId:studentId, courseId: courseId});
+  }
+  
+  unenrollStudentInCourse(courseId: number,studentId: number): Observable<any> {
+    const url = `${this.apiUrl}/${studentId}/courses/${courseId}`;
     return this.http.delete<any>(url);
   }
 

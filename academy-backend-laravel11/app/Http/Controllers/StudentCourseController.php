@@ -21,8 +21,11 @@ class StudentCourseController extends Controller
 
         return response()->json(['courses' => $courses], 200);
     }
-    public function enrollStudentInCourse(Request $request, $studentId, $courseId)
+    public function enrollStudentInCourse(Request $request)
     {
+
+        $studentId = $request->input('studentId');
+        $courseId = $request->input('courseId');
         $student = Student::find($studentId);
         $course = Course::find($courseId);
 

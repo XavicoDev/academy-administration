@@ -7,11 +7,12 @@ import { Router } from '@angular/router';
 import { NuevoComponent } from '../nuevo/nuevo.component';
 import { EditarComponent } from '../editar/editar.component';
 import Swal from 'sweetalert2';
+import { CursosMatriculadosComponent } from '../cursos-matriculados/cursos-matriculados.component';
 
 @Component({
 	selector: 'app-lista',
 	standalone: true,
-	imports: [HttpClientModule, DecimalPipe, NuevoComponent, EditarComponent],
+	imports: [HttpClientModule, DecimalPipe, NuevoComponent, EditarComponent, CursosMatriculadosComponent],
 	providers: [StudentService],
 	templateUrl: './lista.component.html',
 	styleUrl: './lista.component.css'
@@ -37,9 +38,9 @@ export class ListaComponent implements OnInit {
 		});
 	}
 
-	navigateToEdit(student: Student) {
+	navigateTo(student: Student, rout: string) {
 		this.studentSelect = student;
-		this.view = 'edit';
+		this.view = rout;
 	}
 
 	deleteStudent(student: Student) {
@@ -107,10 +108,10 @@ export class ListaComponent implements OnInit {
 	}
 
 
-	navigateTo(url: string) {
-		const otherRoute = '/admin/estudiante/' + url;
-		this.router.navigate([otherRoute]);
-	}
+	// navigateTo(url: string) {
+	// 	const otherRoute = '/admin/estudiante/' + url;
+	// 	this.router.navigate([otherRoute]);
+	// }
 
 	handleNameChange(action: string) {
 		switch (action) {

@@ -1,0 +1,32 @@
+<br>
+<button class="btn btn-primary mb-3"  (click)="change('list')">Volver a lista de estudiantes</button>
+<br>
+<div class="description">
+	<p>A continuación se muestra todos los cursos en los que esta matriculado el estudiante {{student.first_name+' '+student.last_name}}</p>
+</div>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th scope="col">#</th>
+			<th scope="col">Nombre</th>
+			<th scope="col">Duración</th>
+			<th scope="col">Fecha de inicio</th>
+			<th scope="col">Tipo</th>
+			<th scope="col">Creado</th>
+			<th scope="col">Editado</th>
+		</tr>
+	</thead>
+	<tbody>
+		@for (course of courses; track course.id; let i = $index) {
+		<tr>
+			<th scope="row">{{ i + 1 }}</th>
+			<td>{{ course.name }}</td>
+			<td>{{ course.schedule }}</td>
+			<td>{{ course.start_date }}</td>
+			<td>{{ course.type }}</td>
+			<td>{{ course.created_at }}</td>
+			<td>{{ course.updated_at }}</td>
+		</tr>
+		}
+	</tbody>
+</table>

@@ -8,6 +8,10 @@
 @case ('edit') {
 <app-editar (onNameChange)="handleNameChange($event)" [student]="studentSelect"></app-editar>
 }
+@case ('courses') {
+<app-cursos-matriculados (onNameChange)="handleNameChange($event)" [student]="studentSelect"></app-cursos-matriculados>
+}
+
 @default {
 <button class="btn btn-primary mb-3" (click)="view='new'">Registrar nuevo estudiante</button>
 <table class="table table-striped">
@@ -33,8 +37,8 @@
 			<td>{{ student.ci }}</td>
 			<td>{{ student.created_at }}</td>
 			<td>{{ student.updated_at }}</td>
-			<td><button class="btn btn-secondary mb-3" (click)="navigateToEdit(student)">Editar</button></td>
-			<td><button class="btn btn-success mb-3" (click)="navigateToEdit(student)">Matriculas</button></td>
+			<td><button class="btn btn-secondary mb-3" (click)="navigateTo(student,'edit')">Editar</button></td>
+			<td><button class="btn btn-success mb-3" (click)="navigateTo(student,'courses')">Matriculas</button></td>
 			<td><button class="btn btn-danger mb-3" (click)="deleteStudent(student)">Eliminar</button></td>
 		</tr>
 		}

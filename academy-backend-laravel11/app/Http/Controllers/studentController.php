@@ -38,6 +38,28 @@ class StudentController extends Controller
         return response()->json($data, 200);
     }
 
+    public function getStudentCourses($id)
+    {
+        $student = Student::find($id);
+
+        if (!$student) {
+            $data = [
+                'message' => 'Estudiante no encontrado',
+                'status' => 404
+            ];
+            return response()->json($data, 404);
+        }
+
+        $courses = $student->courses()->get();
+
+        $data = [
+            'data' => $courses,
+            'status' => 200
+        ];
+
+        return response()->json($data, 200);
+    }
+
     public function store(Request $request)
     {
 
