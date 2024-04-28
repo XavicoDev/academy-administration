@@ -1,0 +1,41 @@
+<br>
+@switch (view) {
+@case ('administrator') {
+	<app-administrar [course]="courseSelect" (onNameChange)="handleNameChange($event)"></app-administrar>
+}
+@default {
+<div class="description">
+	<p>A continuación se muestra todos los cursos, para matricular o eliminar una matricula debe seleccionar administrar
+		en el curso</p>
+</div>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th scope="col">#</th>
+			<th scope="col">Nombre</th>
+			<th scope="col">Duración</th>
+			<th scope="col">Fecha de inicio</th>
+			<th scope="col">Tipo</th>
+			<th scope="col">Creado</th>
+			<th scope="col">Editado</th>
+			<th scope="col">Acción</th>
+		</tr>
+	</thead>
+	<tbody>
+		@for (course of courses; track course.id; let i = $index) {
+		<tr>
+			<th scope="row">{{ i + 1 }}</th>
+			<td>{{ course.name }}</td>
+			<td>{{ course.schedule }}</td>
+			<td>{{ course.start_date }}</td>
+			<td>{{ course.type }}</td>
+			<td>{{ course.created_at }}</td>
+			<td>{{ course.updated_at }}</td>
+			<td><button class="btn btn-secondary mb-3" (click)="administratorEnrollment(course)">Administrar</button></td>
+			<!-- <td><button class="btn btn-danger mb-3" (click)="deleteCourse(course)">Eliminar</button></td> -->
+		</tr>
+		}
+	</tbody>
+</table>
+}
+}

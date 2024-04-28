@@ -10,6 +10,11 @@ export interface ResponseRegister {
     status: number;
 }
 
+export interface ResponseStudentsOfCourse {
+    enrolled_students: Student[];
+    unenrolled_students: Student[];
+}
+
 export interface Student {
     id?: number;
     first_name: string;

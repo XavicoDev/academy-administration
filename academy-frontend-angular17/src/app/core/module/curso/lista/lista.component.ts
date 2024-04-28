@@ -55,7 +55,6 @@ export class ListaComponent implements OnInit {
       case 'edit':
         this.view = action;
         break;
-
       default:
         break;
     }

@@ -26,6 +26,7 @@ Route::post('/courses', [CourseController::class, 'store']);
 Route::put('/courses/{id}', [CourseController::class, 'update']);
 Route::patch('/courses/{id}', [CourseController::class, 'updatePartial']);
 Route::delete('/courses/{id}', [CourseController::class, 'destroy']);
+Route::get('courses/{courseId}/students', [CourseController::class, 'getEnrolledAndUnenrolledStudents']);
 
 Route::get('students/{studentId}/courses', [StudentCourseController::class, 'getCoursesForStudent']);
 Route::post('students/{studentId}/courses/{courseId}', [StudentCourseController::class, 'enrollStudentInCourse']);

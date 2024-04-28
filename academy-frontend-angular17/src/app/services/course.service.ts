@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { API_ROOT } from '../general/api-config';
-import { ResponseList, ResponseRegister } from '../general/data.model';
+import { ResponseList, ResponseRegister, ResponseStudentsOfCourse } from '../general/data.model';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
@@ -29,6 +29,11 @@ export class CourseService {
   deleteCourse(courseId: number): Observable<any> {
     const url = `${this.apiUrl}/${courseId}`;
     return this.http.delete<any>(url);
+  }
+  
+  getStudentsOfCourse(courseId: number): Observable<ResponseStudentsOfCourse> {
+    const url = `${this.apiUrl}/${courseId}/students`;
+    return this.http.get<ResponseStudentsOfCourse>(url);
   }
 
 }

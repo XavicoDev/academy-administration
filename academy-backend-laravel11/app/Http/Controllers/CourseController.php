@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -149,6 +150,24 @@ class CourseController extends Controller
         ];
         return response()->json($data, 200);
     }
+
+    public function getEnrolledAndUnenrolledStudents($courseId)
+    {
+        // Obtener el curso por su ID
+        $course = Course::findOrFail($courseId);
+
+        // Obtener los estudiantes matriculados en el curso
+        $enrolledStudents = $course->students()->get();
+
+        // Obtener todos los estudiantes y excluir aquellos que están matriculados en el curso
+        $unenrolledStudents = Student::whereNotIn('id', $enrolledStudents->pluck('id')->toArray())->get();
+
+        return response()->json([
+            'enrolled_students' => $enrolledStudents,
+            'unenrolled_students' => $unenrolledStudents
+        ], 200);
+    }
+
 
 
 }

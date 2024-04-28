@@ -1,0 +1,54 @@
+
+<button class="btn btn-primary mb-3" (click)="change('')">Volver a lista de cursos</button>
+<div class="row">
+    <div class="col">
+        <h3>Estudiantes matriculados en {{ course.name }}</h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nombre completo</th>
+                    <th scope="col">Correo</th>
+                    <th scope="col">CI</th>
+                    <th scope="col">Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (enrolledStudents of enrolledStudents; track enrolledStudents.id; let i = $index) {
+                <tr>
+                    <th scope="row">{{ i + 1 }}</th>
+                    <td>{{ enrolledStudents.first_name+' '+enrolledStudents.last_name }}</td>
+                    <td>{{ enrolledStudents.email }}</td>
+                    <td>{{ enrolledStudents.ci }}</td>
+                    <td><button class="btn btn-secondary mb-3" (click)="deregister(enrolledStudents)">Desmatricular</button></td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="col">
+        <h3>Estudiantes no matriculados en {{ course.name }}</h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nombre completo</th>
+                    <th scope="col">Correo</th>
+                    <th scope="col">CI</th>
+                    <th scope="col">Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (unenrolledStudent of unenrolledStudents; track unenrolledStudent.id; let i = $index) {
+                <tr>
+                    <th scope="row">{{ i + 1 }}</th>
+                    <td>{{ unenrolledStudent.first_name+' '+unenrolledStudent.last_name }}</td>
+                    <td>{{ unenrolledStudent.email }}</td>
+                    <td>{{ unenrolledStudent.ci }}</td>
+                    <td><button class="btn btn-secondary mb-3" (click)="enroll(unenrolledStudent)">Matricular</button></td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

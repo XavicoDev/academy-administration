@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { NuevoComponent } from './nuevo/nuevo.component';
+import { ListaCursosComponent } from './lista-cursos/lista-cursos.component';
 
 const routes: Routes = [
-  { path: '', component: NuevoComponent,
+  { path: '', component: ListaCursosComponent,
   }
 ];
 
