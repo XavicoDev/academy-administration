@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +26,11 @@ export class LoginComponent {
         this.router.navigate(['/admin']);
       },
       error => {
-        // Maneja el error de autenticación
+        Swal.fire({
+          title: 'Inicio de sesión fallido',
+          text: 'Revise sus credenciales',
+          icon: 'error'
+        });
       }
     );
   }
